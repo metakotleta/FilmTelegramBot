@@ -36,7 +36,7 @@ public class HtmlParser {
         return elements.get(0).attr("href");
     }
 
-    public void getFileUri(String uri) throws IOException {
+    public String getFileUri(String uri) throws IOException {
         //запрашиваем страницу по ссылке, полученной из getFilmList()
         document = Jsoup.connect(uri).referrer(REFERRER).get();
         //выдергиваем элементы с тэгом iframe, забираем оттуда атрибут src (путь до плеера iplayer/player.php)
@@ -47,6 +47,8 @@ public class HtmlParser {
         var filmDbUri = Jsoup.connect( ZETFLIX_HOME + element).referrer(uri).get()
                 .getElementsByTag("iframe").attr("src");
         //здесь запрашиваем уже ссылки на сами фильмы, которые в ответ отдаёт videodb.php
-        var filmFinalGetUri = Jsoup.connect(ZETFLIX_HOME + filmDbUri).referrer(filmDbUri).get();
+        System.out.println(Jsoup.connect(ZETFLIX_HOME + filmDbUri).referrer(filmDbUri).get().getElementsByTag("script").toString());
+     //   var splitted = filmFinalGetUri.split("\\D\\d{3,4}\\w\\D");
+        return null;
     }
 }

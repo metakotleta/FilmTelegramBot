@@ -43,15 +43,14 @@ public class TestBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
             message.setChatId(update.getMessage().getChatId().toString());
-            message.setText("blabla");
             try {
                 String uri = hParser.getFilmList();
                 hParser.getFileUri(uri);
+                message.setText(hParser.getFileUri(uri));
+                execute(message); // Call method to send the message
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-            try {
-                execute(message); // Call method to send the message
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
