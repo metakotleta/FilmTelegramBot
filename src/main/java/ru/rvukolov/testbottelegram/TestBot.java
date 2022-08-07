@@ -46,7 +46,7 @@ public class TestBot extends TelegramLongPollingBot {
             try {
                 String uri = hParser.getFilmList();
                 hParser.getFileUri(uri);
-                message.setText(hParser.getFileUri(uri));
+                message.setText("blabla");
                 execute(message); // Call method to send the message
 
             } catch (IOException e) {

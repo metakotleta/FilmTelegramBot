@@ -1,12 +1,14 @@
 package ru.rvukolov.testbottelegram.HtmlParsers;
 
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.springframework.util.StringUtils;
+import org.springframework.web.util.UrlPathHelper;
 
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -47,8 +49,8 @@ public class HtmlParser {
         var filmDbUri = Jsoup.connect( ZETFLIX_HOME + element).referrer(uri).get()
                 .getElementsByTag("iframe").attr("src");
         //здесь запрашиваем уже ссылки на сами фильмы, которые в ответ отдаёт videodb.php
-        System.out.println(Jsoup.connect(ZETFLIX_HOME + filmDbUri).referrer(filmDbUri).get().getElementsByTag("script").toString());
-     //   var splitted = filmFinalGetUri.split("\\D\\d{3,4}\\w\\D");
+        var filmFinalGetUri = Jsoup.connect(ZETFLIX_HOME + filmDbUri.substring(0, filmDbUri.indexOf("&"))).referrer(filmDbUri).get().body().getElementsByTag("script").toString();
+        var urls = filmFinalGetUri.substring(filmFinalGetUri.lastIndexOf("file:"), filmFinalGetUri.indexOf(";"));
         return null;
     }
 }
