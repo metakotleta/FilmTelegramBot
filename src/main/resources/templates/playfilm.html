@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/playerjs.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="player"></div>
+<script type="text/javascript" th:inline="javascript">
+    var player = new Playerjs({
+        id:"player",
+        poster: "",
+        default_quality:"480p",
+        file: [(${msg})] });
+   parent.postMessage({playlist: [{"title": "Полное дублирование", "file": "[360p]https://prosto.hdvideobox.me/b4010f81cdd10367de78202d9edafb64:2022080815/movies/48a6053e5608e9695399e01a0727b9b8ad376e9f/360.mp4,[480p]https://prosto.hdvideobox.me/f72c5b86aa4b4730afd28f9cc697212d:2022080815/movies/48a6053e5608e9695399e01a0727b9b8ad376e9f/480.mp4,[720p]https://prosto.hdvideobox.me/864c7e34f87070f8968a63fa6386792b:2022080815/movies/48a6053e5608e9695399e01a0727b9b8ad376e9f/720.mp4,[1080p]https://prosto.hdvideobox.me/1093b34e78a9a92fab86d74bf854c40f:2022080815/movies/48a6053e5608e9695399e01a0727b9b8ad376e9f/1080.mp4", "poster": "https://prosto.hdvideobox.me/8f046cf459b81f955dca997daacbba57:2022080815/movies/48a6053e5608e9695399e01a0727b9b8ad376e9f/thumb004.jpg"},{"title": "Профессиональный (Jaskier)", "file": "[360p]https://prosto.hdvideobox.me/783ce49009a53d5edf807a417d8811f9:2022080815/movies/b78d440caea2af8c1fb29cfb97550f4bc844deb5/360.mp4,[480p]https://prosto.hdvideobox.me/a325e16fe9ac9d46930db7d4e8350299:2022080815/movies/b78d440caea2af8c1fb29cfb97550f4bc844deb5/480.mp4,[720p]https://prosto.hdvideobox.me/8b410e7bce2ad88931a11419c7231d5c:2022080815/movies/b78d440caea2af8c1fb29cfb97550f4bc844deb5/720.mp4,[1080p]https://prosto.hdvideobox.me/f952d2e7f722388234252ce74f57df19:2022080815/movies/b78d440caea2af8c1fb29cfb97550f4bc844deb5/1080.mp4", "poster": "https://prosto.hdvideobox.me/6f3e251a2e3126cd2ce5dcf51324f709:2022080815/movies/b78d440caea2af8c1fb29cfb97550f4bc844deb5/thumb002.jpg"},{"title": "Любительский (AniStar)", "file": "[360p]https://prosto.hdvideobox.me/294d28cb5171bcbcb1a414697256d049:2022080815/movies/04f3d38837b1e04027bba7d2b1641a001c171b85/360.mp4,[480p]https://prosto.hdvideobox.me/50566c685b56a3cbd6c9e02725364e78:2022080815/movies/04f3d38837b1e04027bba7d2b1641a001c171b85/480.mp4,[720p]https://prosto.hdvideobox.me/27fc7b5fab0b1b2a14a47cc4a0076698:2022080815/movies/04f3d38837b1e04027bba7d2b1641a001c171b85/720.mp4,[1080p]https://prosto.hdvideobox.me/791bbd5f05a2b3be5f5121f859e95bbc:2022080815/movies/04f3d38837b1e04027bba7d2b1641a001c171b85/1080.mp4", "poster": "https://prosto.hdvideobox.me/4c2da70e46d614f119ac2843096e3f2c:2022080815/movies/04f3d38837b1e04027bba7d2b1641a001c171b85/thumb002.jpg"},{"title": "Любительский (@MUZOBOZ@)", "file": "[360p]https://prosto.hdvideobox.me/c11b51f568cda3601c603742731b212d:2022080815/movies/931f6b4a3d45c9850ec90b93b547f799ac1e5387/360.mp4,[480p]https://prosto.hdvideobox.me/e430441585de27fc59f02b53d452dceb:2022080815/movies/931f6b4a3d45c9850ec90b93b547f799ac1e5387/480.mp4,[720p]https://prosto.hdvideobox.me/391df00c7a1577a37955654e96dc80ea:2022080815/movies/931f6b4a3d45c9850ec90b93b547f799ac1e5387/720.mp4,[1080p]https://prosto.hdvideobox.me/08fa6868fd0927325bd0362c875709ba:2022080815/movies/931f6b4a3d45c9850ec90b93b547f799ac1e5387/1080.mp4", "poster": "https://prosto.hdvideobox.me/bca4a0267688173b61469923512c0516:2022080815/movies/931f6b4a3d45c9850ec90b93b547f799ac1e5387/thumb001.jpg"},]}, "*");
+
+</script>
+</body>
+</html>
