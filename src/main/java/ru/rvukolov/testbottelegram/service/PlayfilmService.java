@@ -12,7 +12,7 @@ public class PlayfilmService {
         this.playfilmRepository = playfilmRepository;
     }
 
-    public String getFileJson() {
-        return playfilmRepository.getFileJson();
+    public String getFileJson(String id) {
+        return playfilmRepository.getFileJson(id);
     }
 }

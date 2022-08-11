@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import ru.rvukolov.testbottelegram.model.ZetflixFilmLinkPair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ZetflixFilmLinkInlineKeyboard {
@@ -13,13 +14,15 @@ public class ZetflixFilmLinkInlineKeyboard {
     InlineKeyboardMarkup keyboard;
 
     public ZetflixFilmLinkInlineKeyboard(List<ZetflixFilmLinkPair> filmLinkList) {
-        List<InlineKeyboardButton> buttonList = new ArrayList<>();
+        var keyboardBuilder = InlineKeyboardMarkup.builder();
         for (int i = 0; i < filmLinkList.size(); i++) {
-            buttonList.add(InlineKeyboardButton.builder().text(filmLinkList.get(i).getName()).callbackData(COMMAND + " " + i).build());
+            List<InlineKeyboardButton> buttonList = new ArrayList<>(Arrays.asList(InlineKeyboardButton.builder()
+                    .text(filmLinkList.get(i).getName())
+                    .callbackData(COMMAND + " " + i)
+                    .build()));
+            keyboardBuilder.keyboardRow(buttonList);
         }
-        keyboard = InlineKeyboardMarkup.builder()
-                .keyboardRow(buttonList)
-                .build();
+        keyboard = keyboardBuilder.build();
     }
 
     public InlineKeyboardMarkup getKeyboard() {

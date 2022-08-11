@@ -3,6 +3,7 @@ package ru.rvukolov.testbottelegram.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.rvukolov.testbottelegram.HtmlParsers.HtmlParser;
 import ru.rvukolov.testbottelegram.model.HdVideoboxFilm;
 import ru.rvukolov.testbottelegram.service.PlayfilmService;
@@ -19,9 +20,8 @@ public class PlayfilmController {
     }
 
     @GetMapping("/playfilm")
-    public String playfilm(Model model) throws IOException {
-        model.addAttribute("msg", playfilmService.getFileJson());
-        System.out.println(model.getAttribute("msg"));
+    public String playfilm(Model model, @RequestParam String id) throws IOException {
+        model.addAttribute("msg", playfilmService.getFileJson(id));
         return "playfilm";
     }
 }
