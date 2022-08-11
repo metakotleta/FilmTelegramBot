@@ -23,7 +23,6 @@ public class TestBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
     final private FilmLinkRepository filmLinkRepository;
-    private PlayfilmService playfilmService;
     private static final Logger log = LoggerFactory.getLogger(TestBot.class);
 
 
@@ -44,16 +43,20 @@ public class TestBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         HtmlParser htmlParser = new HtmlParser();
+        SendMessage message;
+
         // We check if the update has a message and the message has text
         if (update.hasMessage() && update.getMessage().hasText()) {
-            SendMessage message = new MessagesHandler(update, filmLinkRepository).handleMessage(htmlParser);
+            message = new MessagesHandler(update, filmLinkRepository).handleMessage(htmlParser);
             try {
                 execute(message); // Call method to send the message
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+
+
         } else if (update.hasCallbackQuery()) {
-            SendMessage message = new CallbackQueryHandler(update, filmLinkRepository)
+            message = new CallbackQueryHandler(update, filmLinkRepository)
            //         .setPlayfilmRepository(SpringContext.getApplicationContext().getBean(PlayfilmRepository.class))
                     .setPlayfilmRepository(TestBotTelegramApplication.context.getBean(PlayfilmRepository.class))
                     .handleCallbackQuery(htmlParser);
