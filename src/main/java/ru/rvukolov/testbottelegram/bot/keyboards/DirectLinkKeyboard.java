@@ -16,8 +16,8 @@ public class DirectLinkKeyboard {
     private final static String SERVER_PORT = AppProperties.getInstance().getProps().getProperty("server.port.external");
 
     public DirectLinkKeyboard(long chatId) {
-        log.debug("Chat_id value is {}", chatId);
-        log.debug("Server socket: {}, {}", SERVER_HOST, SERVER_PORT);
+        log.info("Chat_id value is {}", chatId);
+        log.info("Server external socket: {}, {}", SERVER_HOST, SERVER_PORT);
         List<InlineKeyboardButton> row = new ArrayList<>();
         row.add(InlineKeyboardButton.builder().text("DirectLink").url("http://" + SERVER_HOST + ":" + SERVER_PORT + "/playfilm?id=" + chatId).build());
         keyboard = InlineKeyboardMarkup.builder().keyboardRow(row).build();

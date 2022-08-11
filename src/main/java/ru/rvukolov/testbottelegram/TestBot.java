@@ -51,7 +51,7 @@ public class TestBot extends TelegramLongPollingBot {
             SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
             message.setChatId(update.getMessage().getChatId().toString());
             String searchLine = update.getMessage().getText();
-            log.debug("Receive message from {} with request {}", update.getMessage().getChatId(), searchLine);
+            log.info("Receive message from {} with request {}", update.getMessage().getChatId(), searchLine);
 
             try {
                 filmLinkRepository.setNameLinkPair(hParser.getFilmList(searchLine));

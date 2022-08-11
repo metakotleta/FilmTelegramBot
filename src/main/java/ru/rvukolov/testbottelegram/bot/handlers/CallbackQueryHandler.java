@@ -38,18 +38,18 @@ public class CallbackQueryHandler {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         var callback = update.getCallbackQuery();
         var chatId = update.getCallbackQuery().getMessage().getChatId().toString();
-        log.debug("Receive callback query with cmd {}", callback.getData());
+        log.info("Receive callback query with cmd {}", callback.getData());
         switch (callback.getData().substring(0, callback.getData().indexOf(" "))) {
             case "/getFilmLink":
                 try {
                     String[] arrayStr = callback.getData().split(" ");
                     var siteFilmLink = filmLinkRepository.getNameLinkPair().get(Integer.parseInt(arrayStr[1]));
-                    log.debug("FilmLinkPair is {} - {}", siteFilmLink.getName(), siteFilmLink.getLink());
+                    log.info("FilmLinkPair is {} - {}", siteFilmLink.getName(), siteFilmLink.getLink());
                     var filmLinks = hParser.getFilmsJson(siteFilmLink.getLink());
                     var links = hParser.getFilms(filmLinks);
-                    log.debug("Generated links JSON: {}", gson.toJson(links));
+                    log.info("Generated links JSON: {}", gson.toJson(links));
                     playfilmRepository.setFileJson(chatId, gson.toJson(links));
-                    log.debug("JSON set to playfilmRepository");
+                    log.info("JSON set to playfilmRepository");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -59,7 +59,7 @@ public class CallbackQueryHandler {
         message.setReplyMarkup(keyboard);
         message.setText("Ссылка для просмотра");
         message.setChatId(chatId);
-        log.debug("Send generated link: {} to chat {}", keyboard.getKeyboard().get(0).get(0).getUrl(), chatId);
+        log.info("Send generated link: {} to chat {}", keyboard.getKeyboard().get(0).get(0).getUrl(), chatId);
         return message;
     }
 }
