@@ -53,8 +53,9 @@ public class TestBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         } else if (update.hasCallbackQuery()) {
-            SendMessage message = new CallbackQueryHandler(update, filmLinkRepository).
-                    setPlayfilmRepository(SpringContext.getApplicationContext().getBean(PlayfilmRepository.class))
+            SendMessage message = new CallbackQueryHandler(update, filmLinkRepository)
+           //         .setPlayfilmRepository(SpringContext.getApplicationContext().getBean(PlayfilmRepository.class))
+                    .setPlayfilmRepository(TestBotTelegramApplication.context.getBean(PlayfilmRepository.class))
                     .handleCallbackQuery(htmlParser);
             try {
                 execute(message);
