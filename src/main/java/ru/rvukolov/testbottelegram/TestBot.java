@@ -1,5 +1,7 @@
 package ru.rvukolov.testbottelegram;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -24,6 +26,7 @@ public class TestBot extends TelegramLongPollingBot {
     private String botToken;
     final private FilmLinkRepository filmLinkRepository;
     private PlayfilmService playfilmService;
+    private static final Logger log = LoggerFactory.getLogger(TestBot.class);
 
 
     public TestBot(FilmLinkRepository filmLinkRepository) {
@@ -48,6 +51,7 @@ public class TestBot extends TelegramLongPollingBot {
             SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
             message.setChatId(update.getMessage().getChatId().toString());
             String searchLine = update.getMessage().getText();
+            log.debug("Receive message from {} with request {}", update.getMessage().getChatId(), searchLine);
 
             try {
                 filmLinkRepository.setNameLinkPair(hParser.getFilmList(searchLine));
